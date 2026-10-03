@@ -1,0 +1,74 @@
+version: api.keploy.io/v1beta1
+kind: Mongo
+name: mock-0
+spec:
+  metadata:
+    operation: update
+  requests:
+    - header:
+        length: 136
+        request_id: 14
+        response_to: 0
+        op_code: 2013
+      message:
+        sections:
+          - body: '{"update":"url-shortener","ordered":true,"$db":"keploy","updates":[{"q":{"_id":"Lhr4BWAi"},"u":{"$set":{"_id":"Lhr4BWAi","url":"https://google.com","created":{"$date":"2024-06-21T04:24:45.180Z"},"updated":{"$date":"2024-06-21T04:24:45.180Z"}}},"upsert":true}]}'
+  responses:
+    - header:
+        length: 45
+        request_id: 20
+        response_to: 14
+        op_code: 2013
+      message:
+        sections:
+          - body: '{"n":1,"nModified":0,"upserted":[{"index":0,"_id":"Lhr4BWAi"}],"ok":1.0}'
+---
+version: api.keploy.io/v1beta1
+kind: Mongo
+name: mock-1
+spec:
+  metadata:
+    operation: find
+  requests:
+    - header:
+        length: 88
+        request_id: 22
+        response_to: 0
+        op_code: 2013
+      message:
+        sections:
+          - body: '{"find":"url-shortener","filter":{"_id":"Lhr4BWAi"},"limit":1,"$db":"keploy"}'
+  responses:
+    - header:
+        length: 128
+        request_id: 35
+        response_to: 22
+        op_code: 2013
+      message:
+        sections:
+          - body: '{"cursor":{"firstBatch":[{"_id":"Lhr4BWAi","url":"https://google.com","created":{"$date":"2024-06-21T04:24:45.180Z"},"updated":{"$date":"2024-06-21T04:24:45.180Z"}}],"id":0,"ns":"keploy.url-shortener"},"ok":1.0}'
+---
+version: api.keploy.io/v1beta1
+kind: Mongo
+name: mock-2
+spec:
+  metadata:
+    operation: find
+  requests:
+    - header:
+        length: 92
+        request_id: 41
+        response_to: 0
+        op_code: 2013
+      message:
+        sections:
+          - body: '{"find":"url-shortener","filter":{"_id":"nonexistentId"},"limit":1,"$db":"keploy"}'
+  responses:
+    - header:
+        length: 82
+        request_id: 48
+        response_to: 41
+        op_code: 2013
+      message:
+        sections:
+          - body: '{"cursor":{"firstBatch":[],"id":0,"ns":"keploy.url-shortener"},"ok":1.0}'

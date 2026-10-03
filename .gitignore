@@ -1,0 +1,32 @@
+# Node / Next.js
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/.vercel/
+frontend/*.tsbuildinfo
+npm-debug.log*
+
+# Go (project-local env)
+backend/.gopath/
+backend/.bin/
+backend/*.exe
+backend/*.test
+backend/*.out
+
+# Env & secrets
+.env
+.env.*
+!.env.example
+
+# Optional Python helper env
+tools/.venv/
+__pycache__/
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# Raw working material (keep notes, drop heavy originals)
+docs/screenshots-raw/

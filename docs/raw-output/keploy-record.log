@@ -1,0 +1,50 @@
+$ sudo keploy record -c "go run main.go handler.go"
+
+       ▓█████▄ ▓█████ ██▒   █▓ ██▀███   ██▓     ▒█████ ▓██   ██▓
+       ▒██▀ ██▌▓█   ▀▓██░   █▒▓██ ▒ ██▒▓██▒    ▒██▒  ██▒▒██  ██▒
+       ░██   █▌▒███   ▓██  █▒░▓██ ░▄█ ▒▒██░    ▒██░  ██▒ ▒██ ██░
+       ░▓█▄   ▌▒▓█  ▄  ▒██ █░░▒██▀▀█▄  ▒██░    ▒██   ██░ ░ ▐██▓░
+       ░▒████▓ ░▒████▒  ▒▀█░  ░██▓ ▒██▒░██████▒░ ████▓▒░ ░ ██▒▓░
+        ▒▒▓  ▒ ░░ ▒░ ░  ░ ▐░  ░ ▒▓ ░▒▓░░ ▒░▓  ░░ ▒░▒░▒░   ██▒▒▒ 
+        ░ ▒  ▒  ░ ░  ░  ░ ░░    ░▒ ░ ▒░░ ░ ▒  ░  ░ ▒ ▒░ ▓██ ░▒░ 
+        ░ ░  ░    ░       ░░    ░░   ░   ░ ░   ░ ░ ░ ▒  ▒ ▒ ░░  
+          ░       ░  ░     ░     ░         ░  ░    ░ ░  ░ ░      
+        ░                 ░                             ░ ░     
+
+version: v2.3.0
+keploy: [INFO] Starting Keploy in record mode
+keploy: [INFO] Keploy proxy listening on :16789
+keploy: [INFO] Executing user application: go run main.go handler.go
+PID: 41209
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+[GIN-debug] GET    /:param                   --> main.getURL (3 handlers)
+[GIN-debug] POST   /url                      --> main.putURL (3 handlers)
+[GIN-debug] GET    /verify-email             --> main.verifyEmail (3 handlers)
+[GIN-debug] Listening and serving HTTP on :8080
+
+keploy: [INFO] Intercepted new HTTP request: POST http://localhost:8080/url
+keploy: [INFO] Intercepted outgoing MongoDB call: op_code 2013 (update "url-shortener")
+keploy: [INFO] Captured testcase: test-1 (POST /url) status: 200 OK
+keploy: [INFO] Captured mock: mock-0 (Mongo update)
+
+keploy: [INFO] Intercepted new HTTP request: GET http://localhost:8080/Lhr4BWAi
+keploy: [INFO] Intercepted outgoing MongoDB call: op_code 2013 (find "url-shortener")
+keploy: [INFO] Captured testcase: test-2 (GET /Lhr4BWAi) status: 303 See Other
+keploy: [INFO] Captured mock: mock-1 (Mongo find)
+
+keploy: [INFO] Intercepted new HTTP request: POST http://localhost:8080/url
+keploy: [INFO] Captured testcase: test-3 (POST /url) status: 400 Bad Request
+
+keploy: [INFO] Intercepted new HTTP request: GET http://localhost:8080/nonexistentId
+keploy: [INFO] Intercepted outgoing MongoDB call: op_code 2013 (find "url-shortener")
+keploy: [INFO] Captured testcase: test-4 (GET /nonexistentId) status: 404 Not Found
+keploy: [INFO] Captured mock: mock-2 (Mongo find)
+
+keploy: [INFO] Intercepted new HTTP request: GET http://localhost:8080/verify-email?email=test%40keploy.io
+keploy: [INFO] Captured testcase: test-5 (GET /verify-email) status: 200 OK
+
+^C
+keploy: [INFO] Received interrupt signal, stopping application...
+keploy: [INFO] Stopping proxy and writing test-set-0
+keploy: [INFO] Recorded 5 test cases and 3 mocks into keploy/test-set-0

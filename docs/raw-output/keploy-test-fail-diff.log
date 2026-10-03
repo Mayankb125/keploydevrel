@@ -1,0 +1,52 @@
+$ sudo keploy test -c "go run main.go handler.go" --delay 5
+
+version: v2.3.0
+keploy: [INFO] Starting Keploy in test mode
+keploy: [INFO] Mocking outgoing dependencies (MongoDB)...
+keploy: [INFO] Executing user application: go run main.go handler.go
+PID: 42104
+[GIN-debug] GET    /:param                   --> main.getURL (3 handlers)
+[GIN-debug] POST   /url                      --> main.putURL (3 handlers)
+[GIN-debug] GET    /verify-email             --> main.verifyEmail (3 handlers)
+[GIN-debug] Listening and serving HTTP on :8080
+
+keploy: [INFO] Application started, waiting 5s (--delay)...
+keploy: [INFO] Starting test execution for test-set-0
+
+keploy: [INFO] Testing: test-1 (POST /url)
+keploy: [INFO] Matched mock: mock-0 (Mongo update)
+keploy: [FAIL] Test test-1 failed! Mismatch in response body:
+
+---------------------------------------------------------------------------
+Diff for test-1:
+{
+-   "url": "http://localhost:8080/Lhr4BWAi",
++   "short_url": "http://localhost:8080/Lhr4BWAi",
+    "ts": 1718943885198315028
+}
+---------------------------------------------------------------------------
+
+keploy: [INFO] Testing: test-2 (GET /Lhr4BWAi)
+keploy: [INFO] Matched mock: mock-1 (Mongo find)
+keploy: [INFO] Result: PASSED (Status: 303 == 303, Location matched)
+
+keploy: [INFO] Testing: test-3 (POST /url)
+keploy: [INFO] Result: PASSED (Status: 400 == 400, Body matched)
+
+keploy: [INFO] Testing: test-4 (GET /nonexistentId)
+keploy: [INFO] Matched mock: mock-2 (Mongo find)
+keploy: [INFO] Result: PASSED (Status: 404 == 404, Body matched)
+
+keploy: [INFO] Testing: test-5 (GET /verify-email)
+keploy: [INFO] Result: PASSED (Status: 200 == 200, Body matched)
+
+---------------------------------------------------------------------------
+<=========================================>
+  COMPLETE TESTRUN SUMMARY
+  Total tests: 5
+  Total test passed: 4
+  Total test failed: 1
+<=========================================>
+---------------------------------------------------------------------------
+keploy: [ERROR] Test run failed: 1 test case did not match expected contract
+exit status 1

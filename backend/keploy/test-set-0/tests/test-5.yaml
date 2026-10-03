@@ -1,0 +1,38 @@
+version: api.keploy.io/v1beta1
+kind: Http
+name: test-5
+spec:
+  metadata: {}
+  req:
+    method: GET
+    proto_major: 1
+    proto_minor: 1
+    url: http://localhost:8080/verify-email?email=test%40keploy.io
+    header:
+      Accept: '*/*'
+      Host: localhost:8080
+      User-Agent: curl/7.88.1
+    body: ""
+    timestamp: 2024-06-21T09:55:38.88990011+05:30
+  resp:
+    status_code: 200
+    header:
+      Content-Length: "75"
+      Content-Type: application/json; charset=utf-8
+      Date: Fri, 21 Jun 2024 04:25:38 GMT
+    body: '{"disposable":false,"email":"test@keploy.io","suggestion":"","syntax":true}'
+    status_message: OK
+    proto_major: 0
+    proto_minor: 0
+    timestamp: 2024-06-21T09:55:39.11223344+05:30
+  objects: []
+  assertions:
+    noise:
+      header.Date: []
+  created: 1718943939
+curl: |
+  curl --request GET \
+    --url 'http://localhost:8080/verify-email?email=test%40keploy.io' \
+    --header 'Accept: */*' \
+    --header 'Host: localhost:8080' \
+    --header 'User-Agent: curl/7.88.1'
