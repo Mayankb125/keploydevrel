@@ -60,7 +60,7 @@ export function Header() {
 
           {/* GitHub Repository Link */}
           <a
-            href="https://github.com"
+            href="https://github.com/Mayankb125/keploydevrel"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="View Source on GitHub"

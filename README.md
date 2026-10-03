@@ -5,8 +5,8 @@ A beginner-friendly tutorial on recording and replaying API regression tests wit
 ---
 
 ## Deliverables
-- **Live Documentation Website:** *(To be deployed on Vercel)*
-- **Public GitHub Repository:** *(This repository)*
+- **Live Documentation Website:** *(Deploying on Vercel)*
+- **Public GitHub Repository:** [https://github.com/Mayankb125/keploydevrel](https://github.com/Mayankb125/keploydevrel)
 
 ---
 
